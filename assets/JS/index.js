@@ -36,7 +36,7 @@ async function doCodePostal(x) {
     if(localStorage.code != ""){console.log('trigged')}
     x = document.getElementById("codePostal").value;
     let codePostal = await fetchCodePostal(x); 
-    console.log(codePostal)
+    if(codePostal.length == 0) {return localStorage.code = "Code postal inconnu" }
     return localStorage.code = codePostal[0].nom;   
   
 }
