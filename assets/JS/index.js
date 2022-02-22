@@ -7,8 +7,8 @@ function submitCode() {
 
     val = chars.charAt(0) + chars.charAt(1);
     
-    if(value.length != 5) { alert('Il faut 5 chiffre'); return location.reload()}
-    if(!value.match("^[0-9]*$")){alert('Seulement des chiffres'); return location.reload()}
+    if(value.length != 5) { alert('Il faut 5 chiffre'); return window.location.reload()}
+    if(!value.match("^[0-9]*$")){alert('Seulement des chiffres'); return window.location.reload()}
 
     if(val == "31"){
         localStorage.code = "Toulouse";
