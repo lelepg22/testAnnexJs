@@ -1,5 +1,5 @@
 function submitCode() { 
-    localStorage.code = ""
+    
     
     var value =  document.getElementById("codePostal").value;
     
@@ -14,12 +14,31 @@ function submitCode() {
         localStorage.code = "Toulouse";
         return location.assign("page2.html")
     }
-
+    if(val == "33"){
     localStorage.code = "Bordeaux";
-    location.assign("page2.html")
+    return location.assign("page2.html")
+    }
+    doCodePostal();    
+    location.assign("page2.html");
+
+}
+async function fetchCodePostal(code) {
+    const response = await fetch(`https://geo.api.gouv.fr/communes?codePostal=${code}`);
+  
+    return await response.json();    
+  }
+
+async function doCodePostal(x) {
+    if(localStorage.code != ""){console.log('trigged')}
+    x = document.getElementById("codePostal").value;
+    let codePostal = await fetchCodePostal(x);
+    console.log(codePostal[0].nom)
+   return localStorage.code = codePostal[0].nom;
 }
 
-window.onload = function() {
+window.onload = function() {  
+    
     if(document.getElementById("resultat")){
         document.getElementById("resultat").innerHTML = localStorage.code};
+        
   };
