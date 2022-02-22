@@ -18,8 +18,12 @@ function submitCode() {
     localStorage.code = "Bordeaux";
     return location.assign("page2.html")
     }
-    doCodePostal();    
-    location.assign("page2.html");
+    localStorage.code = "";
+     doCodePostal() 
+
+        
+    
+     setTimeout(function(){location.assign("page2.html")},100);
 
 }
 async function fetchCodePostal(code) {
@@ -31,9 +35,10 @@ async function fetchCodePostal(code) {
 async function doCodePostal(x) {
     if(localStorage.code != ""){console.log('trigged')}
     x = document.getElementById("codePostal").value;
-    let codePostal = await fetchCodePostal(x);
-    console.log(codePostal[0].nom)
-   return localStorage.code = codePostal[0].nom;
+    let codePostal = await fetchCodePostal(x); 
+    console.log(codePostal)
+    return localStorage.code = codePostal[0].nom;   
+  
 }
 
 window.onload = function() {  
